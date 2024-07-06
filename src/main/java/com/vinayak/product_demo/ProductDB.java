@@ -3,7 +3,10 @@ package com.vinayak.product_demo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDB {
 
@@ -29,6 +32,27 @@ public class ProductDB {
             st.execute();
         } catch (Exception e) {
         }
+    }
+
+    public List<Product> getAll() {
+        String query = "SELECT * from product ";
+        List<Product> products = new ArrayList<>();
+
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setType(rs.getString("type"));
+                p.setPlace(rs.getString("place"));
+                p.setWarranty(rs.getInt("warranty"));
+                products.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return products;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.vinayak.product_demo;
 
+import java.util.List;
+
 public class ProductService {
 
     ProductDB db = new ProductDB();
@@ -8,7 +10,8 @@ public class ProductService {
         db.save(product);
     }
 
-    public void getAllProducts() {
+    public List<Product> getAllProducts() {
+        return db.getAll();
     }
 
     public void getProductById(int id) {
