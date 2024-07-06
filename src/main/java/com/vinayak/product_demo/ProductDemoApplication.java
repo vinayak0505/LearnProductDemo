@@ -2,13 +2,14 @@ package com.vinayak.product_demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class ProductDemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProductDemoApplication.class, args);
-        ProductService productService = new ProductService();
+        ApplicationContext context = SpringApplication.run(ProductDemoApplication.class, args);
+        ProductService service = context.getBean(ProductService.class);
 
         // productService.addProduct(new Product(1, "Product 1", "Type 1", "Place 1", 1));
         // productService.addProduct(new Product(2, "Product 2", "Type 2", "Place 2", 2));
@@ -19,7 +20,7 @@ public class ProductDemoApplication {
         // productService.addProduct(new Product(7, "Product 7", "Type 7", "Place 7", 7));
         // productService.addProduct(new Product(8, "Product 8", "Type 8", "Place 8", 8));
 
-        System.out.println(productService.getAllProducts());
+        System.out.println(service.getAllProducts());
     }
 
 }
