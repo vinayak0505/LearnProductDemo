@@ -12,7 +12,6 @@ public class ProductService {
     ProductDB db;
     
     public void addProduct(Product product) {
-        System.out.println("Adding product: " + product);
         db.save(product);
     }
 
@@ -20,6 +19,11 @@ public class ProductService {
         return db.findAll();
     }
 
-    public void getProductById(int id) {
+    public Product getProductById(int id) {
+        return db.findById(id).orElse(new Product());
+    }
+
+    public Product getProductByName(String name) {
+        return db.findByName(name);
     }
 }
