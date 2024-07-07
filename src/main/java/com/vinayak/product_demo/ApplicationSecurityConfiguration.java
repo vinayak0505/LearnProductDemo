@@ -17,7 +17,7 @@ public class ApplicationSecurityConfiguration {
     private UserDetailsService userDetailsService;
 
     @Bean
-    public AuthenticationProvider authProvider(){
+    protected AuthenticationProvider authProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
         provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
